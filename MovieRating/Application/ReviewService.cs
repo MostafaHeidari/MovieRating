@@ -24,11 +24,16 @@ namespace MovieRatingExample.Application
 
         public double GetAverageRateFromReviewer(int reviewer)
         {
+            
             BEReview[] allReviews = Repository.GetAll();
             if (allReviews.Any(review => review.Reviewer == reviewer))
-                //return allReviews.Where(reviewer => reviewer);
-                
+                return allReviews.Where(review => review.Reviewer == reviewer)
+                    .Select(reviewer => reviewer.Grade)
+                    .Average();
+            throw new ArgumentException(message: "Re is not found");
+
         }
+
 
         public double GetAverageRateOfMovie(int movie)
         {
