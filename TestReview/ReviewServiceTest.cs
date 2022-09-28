@@ -81,5 +81,37 @@ namespace XUnitTestProject
         }
 
 
+        [Fact]
+        public void GetMostProductiveReviewers()
+        {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() {Reviewer = 1, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 2, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 1, Movie = 2, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 4, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 3, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 3, Movie = 2, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 2, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 2, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 1, Movie = 2, Grade=3, ReviewDate = new DateTime()},
+            };
+
+            Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
+            mockRepository.Setup(r => r.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepository.Object);
+
+            // Act
+            List<int> result = service.GetMostProductiveReviewers();
+            List<int> expectedResult = new List<int>();
+            expectedResult.Add(1);
+            expectedResult.Add(2);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+            mockRepository.Verify(r => r.GetAll(), Times.Once);
+        }
     }
 }
