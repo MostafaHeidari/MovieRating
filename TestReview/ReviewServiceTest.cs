@@ -84,7 +84,7 @@ namespace XUnitTestProject
             mockRepository.Verify(r => r.GetAll(), Times.Once);
         }
 
-     
+
         [Theory]
         [InlineData(1, 1.5)]
         [InlineData(2, 4.5)]
