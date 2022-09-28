@@ -64,9 +64,22 @@ namespace XUnitTestProject
         }
 
 
-        public void GetAverageRateOfMovie(int movie)
+        public void GetAverageRateFromReviewer(int movie)
         {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() {Reviewer = 1, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 2, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 1, Movie = 2, Grade=3, ReviewDate = new DateTime()},
+            };
 
+            Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
+            mockRepository.Setup(r => r.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepository.Object);
         }
+
+
     }
 }
