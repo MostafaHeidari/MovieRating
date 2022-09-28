@@ -64,6 +64,11 @@ namespace XUnitTestProject
         }
 
 
+        static IEnumerable<Object[]> GetMoviesWithHighestNumberOfTopRates_TestCases()
+        {
+            // No Higest top-rate => empty List
+            yield return new object[]
+        }
         public void GetAverageRateFromReviewer(int movie)
         {
             // Arrange
@@ -71,13 +76,47 @@ namespace XUnitTestProject
             {
                 new BEReview() {Reviewer = 1, Movie = 1, Grade=3, ReviewDate = new DateTime()},
                 new BEReview() {Reviewer = 2, Movie = 1, Grade=3, ReviewDate = new DateTime()},
-                new BEReview() {Reviewer = 1, Movie = 2, Grade=3, ReviewDate = new DateTime()},
             };
 
             Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
             mockRepository.Setup(r => r.GetAll()).Returns(fakeRepo);
 
             IReviewService service = new ReviewService(mockRepository.Object);
+
+            //Act
+            int result = service.GetAverageRateFromReviewer(movie);
+
+
+            //Assert
+
+
+        }
+
+
+        [Theory]
+        [InlineData(1.2, 1)]
+        [InlineData(2, 1.2)]
+        public void GetAverageRateFromReviewer(int movie)
+        {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() {Reviewer = 1, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() {Reviewer = 2, Movie = 1, Grade=3, ReviewDate = new DateTime()},
+            };
+
+            Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
+            mockRepository.Setup(r => r.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepository.Object);
+
+            //Act
+            int result = service.GetAverageRateFromReviewer(movie);
+
+
+            //Assert
+
+
         }
 
 
