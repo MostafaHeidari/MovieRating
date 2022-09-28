@@ -42,7 +42,46 @@ namespace MovieRatingExample.Application
 
         public List<int> GetMostProductiveReviewers()
         {
-            throw new NotImplementedException();
+            BEReview[] fakeRepo = Repository.GetAll();
+
+            var counts = new Dictionary<int, int>();
+
+            foreach (var item in fakeRepo)
+            {
+                int count;
+                counts.TryGetValue(item.Reviewer, out count);
+                count++;
+                //Automatically replaces the entry if it exists;
+                //no need to use 'Contains'
+                counts[item.Reviewer] = count;
+            }
+
+            List<int> result = new List<int>();
+
+            foreach (var item in counts)
+            {
+                if (result.Count == 0)
+                {
+                    result.Add(item.Key);
+                }
+                else
+                {
+                    int i;
+                    counts.TryGetValue(result.ElementAt(0),out i);
+
+                    if (item.Value > i)
+                    {
+                        result.Clear();
+                        result.Add(item.Key);
+                    }
+                    else if (item.Value == i)
+                    {
+                        result.Add(item.Key);
+                    }
+                }
+            }
+
+            return result;
         }
 
         public List<int> GetMoviesWithHighestNumberOfTopRates()
