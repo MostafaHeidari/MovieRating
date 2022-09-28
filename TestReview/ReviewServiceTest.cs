@@ -104,6 +104,7 @@ namespace XUnitTestProject
 
             IReviewService service = new ReviewService(mockRepo.Object);
 
+            //Act
             double result = service.GetAverageRateFromReviewer(reviewer);
 
             // Assert
@@ -111,5 +112,36 @@ namespace XUnitTestProject
             mockRepo.Verify(r => r.GetAll(), Times.Once);
         }
 
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(2, 1)]
+        [InlineData(3, 0)]
+        public void GetAverageRateOfMovie(int movie)
+        {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() { Reviewer = 1, Movie = 1, Grade = 1, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime()}
+            };
+
+            
+            Mock<IReviewRepository> mockRepo = new Mock<IReviewRepository>();
+            mockRepo.Setup(repo => repo.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepo.Object);
+
+            //Act
+            double result = service.GetAverageRateOfMovie(movie);
+
+            // Assert
+            Assert.Equal(expectedAverage, result);
+            mockRepo.Verify(r => r.GetAll(), Times.Once);
+
+        }
+
     }
+
 }
