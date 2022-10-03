@@ -21,10 +21,10 @@ namespace MovieRatingExample.Core.Service
         int GetNumberOfReviews(int movie);
 
         //5. On input N, what is the average rate the movie N had received?
-        double GetAverageRateOfMovie(int movie);
+        decimal GetAverageRateOfMovie(int movie, decimal expectedAverage);
         
         //6. On input N and R, how many times had movie N received rate R?
-        int GetNumberOfRates(int movie, int rate);
+        int GetNumberOfRates(int movie, int rate, int numberOfCertainGrades);
 
         //7. What is the id(s) of the movie(s) with the highest number of top rates(5)?
         List<int> GetMoviesWithHighestNumberOfTopRates();

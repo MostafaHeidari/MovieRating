@@ -35,9 +35,30 @@ namespace MovieRatingExample.Application
         }
 
 
-        public double GetAverageRateOfMovie(int movie)
+        public decimal GetAverageRateOfMovie(int movie, decimal expectedAverage)
         {
-            throw new NotImplementedException();
+            BEReview[] fakeRepo = Repository.GetAll();
+
+            int countMovie = 0;
+            decimal countGrade = 0;
+
+            foreach (var item in fakeRepo)
+            {
+                if (movie == item.Movie)
+                {
+                    countMovie++;
+                    countGrade += item.Grade;
+                }
+                  
+                
+                
+            }
+
+            if (countMovie == 0)
+            {
+                return 0;
+            }
+            return countGrade/countMovie;
         }
 
         public List<int> GetMostProductiveReviewers()
@@ -89,9 +110,24 @@ namespace MovieRatingExample.Application
             throw new NotImplementedException();
         }
 
-        public int GetNumberOfRates(int movie, int rate)
+        public int GetNumberOfRates(int movie, int grade, int expectedNumberOfCertainGrades)
         {
-            throw new NotImplementedException();
+            BEReview[] fakeRepo = Repository.GetAll();
+
+            int counts = 0;
+
+            foreach (var item in fakeRepo)
+            {
+                if (movie == item.Movie && grade == item.Grade)
+                {
+                    counts++;
+                }
+                  
+                
+                
+            }
+
+            return counts;
         }
 
         public int GetNumberOfRatesByReviewer(int reviewer, int rate)
