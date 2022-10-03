@@ -49,8 +49,6 @@ namespace MovieRatingExample.Application
                     countMovie++;
                     countGrade += item.Grade;
                 }
-                  
-                
                 
             }
 
@@ -176,7 +174,11 @@ namespace MovieRatingExample.Application
 
         public int GetNumberOfReviews(int movie)
         {
-            throw new NotImplementedException();
+            BEReview[] allReviews = Repository.GetAll();
+            if (allReviews.Any(review => review.Movie == movie))
+                return allReviews.Count(review => review.Movie == movie);
+        
+            throw new ArgumentException("Movie does not exist");
         }
 
         public int GetNumberOfReviewsFromReviewer(int reviewer)
