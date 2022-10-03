@@ -139,7 +139,6 @@ namespace XUnitTestProject
             // Assert
             Assert.Equal(expectedAverage, result);
             mockRepo.Verify(r => r.GetAll(), Times.Once);
-
         }
 
         [Theory]
@@ -200,7 +199,6 @@ namespace XUnitTestProject
             mockRepo.Setup(repo => repo.GetAll()).Returns(fakeRepo);
 
             IReviewService service = new ReviewService(mockRepo.Object);
-
         }
         
         [Theory]
@@ -229,7 +227,5 @@ namespace XUnitTestProject
             Assert.Equal(expectedAmount, actualAmount);
             mockRepo.Verify(repo => repo.GetAll(), Times.Once);
         }
-
     }
-
 }

@@ -49,7 +49,6 @@ namespace MovieRatingExample.Application
                     countMovie++;
                     countGrade += item.Grade;
                 }
-                
             }
 
             if (countMovie == 0)
@@ -159,9 +158,6 @@ namespace MovieRatingExample.Application
                 {
                     counts++;
                 }
-                  
-                
-                
             }
 
             return counts;
