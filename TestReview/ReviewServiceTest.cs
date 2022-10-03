@@ -176,6 +176,33 @@ namespace XUnitTestProject
             
         }
 
+        [Theory]
+        [InlineData(1, 3)]
+        [InlineData(3, 1)]
+        [InlineData(2, 2)]
+        public void GetMoviesWithHigestNumberOfTopRates(int movie, int result)
+        {
+            // Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() { Reviewer = 1, Movie = 3, Grade = 1, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 6, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 7, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 5, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 3, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 5, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
+            };
+            Mock<IReviewRepository> mockRepo = new Mock<IReviewRepository>();
+            mockRepo.Setup(repo => repo.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepo.Object);
+
+        }
+
     }
 
 }
