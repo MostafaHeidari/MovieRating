@@ -3,6 +3,7 @@ using MovieRatingExample.Core.Repositories;
 using MovieRatingExample.Core.Service;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -165,7 +166,19 @@ namespace MovieRatingExample.Application
 
         public int GetNumberOfRatesByReviewer(int reviewer, int rate)
         {
-            throw new NotImplementedException();
+            BEReview[] fakeRepo = Repository.GetAll();
+
+            int counts = 0;
+
+            foreach (var item in fakeRepo)
+            {
+                if (reviewer == item.Reviewer && rate == item.Grade)
+                {
+                    counts++;
+                }
+            }
+
+            return counts;
         }
 
         public int GetNumberOfReviews(int movie)

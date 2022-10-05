@@ -227,5 +227,34 @@ namespace XUnitTestProject
             Assert.Equal(expectedAmount, actualAmount);
             mockRepo.Verify(repo => repo.GetAll(), Times.Once);
         }
+
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(2, 1, 0)]
+        [InlineData(2, 5, 2)]
+        public void GetNumberOfRatesByReviewer(int reviewer, int rate, int expectedNumber)
+        {
+            //Arrange
+            BEReview[] fakeRepo = new BEReview[]
+            {
+                new BEReview() { Reviewer = 1, Movie = 1, Grade = 1, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 4, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 4, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime() }
+            };
+            Mock<IReviewRepository> mockRepo = new Mock<IReviewRepository>();
+            mockRepo.Setup(repo => repo.GetAll()).Returns(fakeRepo);
+
+            IReviewService service = new ReviewService(mockRepo.Object);
+
+            // Act
+            int actualAmount = service.GetNumberOfReviews(reviewer);
+
+            // Assert
+            Assert.Equal(expectedNumber, actualAmount);
+            mockRepo.Verify(repo => repo.GetAll(), Times.Once);
+        }
     }
 }
