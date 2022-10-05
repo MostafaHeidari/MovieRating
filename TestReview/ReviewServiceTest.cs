@@ -250,7 +250,7 @@ namespace XUnitTestProject
             IReviewService service = new ReviewService(mockRepo.Object);
 
             // Act
-            int actualAmount = service.GetNumberOfReviews(reviewer);
+            int actualAmount = service.GetNumberOfRatesByReviewer(reviewer, rate);
 
             // Assert
             Assert.Equal(expectedNumber, actualAmount);
