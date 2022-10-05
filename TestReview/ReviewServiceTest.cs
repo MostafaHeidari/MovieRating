@@ -277,7 +277,7 @@ namespace XUnitTestProject
         IReviewService service = new ReviewService(mockRepo.Object);
 
         // Act
-        int actualAmount = service.GetNumberOfReviews(movie);
+        int actualAmount = service.GetReviewersByMovie(movie);
 
         // Assert
         Assert.Equal(expectedAmount, actualAmount);
