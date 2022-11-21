@@ -15,7 +15,7 @@ namespace XUnitTestProject
             {
                 new BEReview[]
                 {
-                    new BEReview() {Reviewer = 1, Movie = 1, Grade = 4, ReviewDate = new DateTime() }
+                    new BEReview() { Reviewer = 1, Movie = 1, Grade = 4, ReviewDate = new DateTime() }
                 },
                 new List<int>()
             };
@@ -24,7 +24,7 @@ namespace XUnitTestProject
             {
                 new BEReview[]
                 {
-                  new BEReview() {Reviewer = 1, Movie = 1, Grade = 4, ReviewDate = new DateTime() }
+                    new BEReview() { Reviewer = 1, Movie = 1, Grade = 4, ReviewDate = new DateTime() }
                 }
             };
         }
@@ -66,9 +66,9 @@ namespace XUnitTestProject
             // Arrange
             BEReview[] fakeRepo = new BEReview[]
             {
-                new BEReview() {Reviewer = 1, Movie = 1, Grade=3, ReviewDate = new DateTime()},
-                new BEReview() {Reviewer = 2, Movie = 1, Grade=3, ReviewDate = new DateTime()},
-                new BEReview() {Reviewer = 1, Movie = 2, Grade=3, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 1, Movie = 1, Grade = 3, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 3, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 1, Movie = 2, Grade = 3, ReviewDate = new DateTime() },
             };
 
             Mock<IReviewRepository> mockRepository = new Mock<IReviewRepository>();
@@ -93,10 +93,10 @@ namespace XUnitTestProject
             // Arrange
             BEReview[] fakeRepo = new BEReview[]
             {
-                new BEReview() { Reviewer = 1, Movie = 1, Grade = 1, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime()}
+                new BEReview() { Reviewer = 1, Movie = 1, Grade = 1, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime() }
             };
 
             Mock<IReviewRepository> mockRepo = new Mock<IReviewRepository>();
@@ -121,13 +121,13 @@ namespace XUnitTestProject
             // Arrange
             BEReview[] fakeRepo = new BEReview[]
             {
-                new BEReview() { Reviewer = 1, Movie = 1, Grade = 1, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime()}
+                new BEReview() { Reviewer = 1, Movie = 1, Grade = 1, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime() }
             };
 
-            
+
             Mock<IReviewRepository> mockRepo = new Mock<IReviewRepository>();
             mockRepo.Setup(repo => repo.GetAll()).Returns(fakeRepo);
 
@@ -151,28 +151,28 @@ namespace XUnitTestProject
             // Arrange
             BEReview[] fakeRepo = new BEReview[]
             {
-                new BEReview() { Reviewer = 1, Movie = 3, Grade = 1, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 6, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 7, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 5, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 3, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 5, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 1, Movie = 3, Grade = 1, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 6, Movie = 2, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 7, Movie = 1, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 5, Movie = 2, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 3, Movie = 1, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 5, Movie = 2, Grade = 2, ReviewDate = new DateTime() },
             };
             Mock<IReviewRepository> mockRepo = new Mock<IReviewRepository>();
             mockRepo.Setup(repo => repo.GetAll()).Returns(fakeRepo);
 
             IReviewService service = new ReviewService(mockRepo.Object);
-            
+
             //Act
             int result = service.GetNumberOfRates(movie, grade, expectedNumberOfCertainGrades);
-            
+
             // Assert
             Assert.Equal(expectedNumberOfCertainGrades, result);
-            
+
         }
 
         [Theory]
@@ -184,23 +184,23 @@ namespace XUnitTestProject
             // Arrange
             BEReview[] fakeRepo = new BEReview[]
             {
-                new BEReview() { Reviewer = 1, Movie = 3, Grade = 1, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 2, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 6, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 7, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 5, Movie = 2, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 3, Movie = 1, Grade = 5, ReviewDate = new DateTime()},
-                new BEReview() { Reviewer = 5, Movie = 2, Grade = 2, ReviewDate = new DateTime()},
+                new BEReview() { Reviewer = 1, Movie = 3, Grade = 1, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 4, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 2, Movie = 1, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 6, Movie = 2, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 7, Movie = 1, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 5, Movie = 2, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 3, Movie = 1, Grade = 5, ReviewDate = new DateTime() },
+                new BEReview() { Reviewer = 5, Movie = 2, Grade = 2, ReviewDate = new DateTime() },
             };
             Mock<IReviewRepository> mockRepo = new Mock<IReviewRepository>();
             mockRepo.Setup(repo => repo.GetAll()).Returns(fakeRepo);
 
             IReviewService service = new ReviewService(mockRepo.Object);
         }
-        
+
         [Theory]
         [InlineData(1, 1)]
         [InlineData(2, 3)]
@@ -263,24 +263,19 @@ namespace XUnitTestProject
         [InlineData(2, 5)]
         public void GetReviewersByMovie(int movie, int expectedAmount)
         {
+            
+        }
+        //Arrange
+        BEReview[] fakeRepo = new BEReview[]
+        {
             new BEReview() { Reviewer = 1, Movie = 1, Grade = 1, ReviewDate = new DateTime() },
             new BEReview() { Reviewer = 1, Movie = 2, Grade = 2, ReviewDate = new DateTime() },
             new BEReview() { Reviewer = 2, Movie = 2, Grade = 4, ReviewDate = new DateTime() },
             new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime() },
             new BEReview() { Reviewer = 2, Movie = 2, Grade = 4, ReviewDate = new DateTime() },
             new BEReview() { Reviewer = 2, Movie = 2, Grade = 5, ReviewDate = new DateTime() }
-        }
-
-        Mock<IReviewRepository> mockRepo = new Mock<IReviewRepository>();
-        mockRepo.Setup(repo => repo.GetAll()).Returns(fakeRepo);
-
-        IReviewService service = new ReviewService(mockRepo.Object);
-
-        // Act
-        int actualAmount = service.GetReviewersByMovie(movie);
-
-        // Assert
-        Assert.Equal(expectedAmount, actualAmount);
-            mockRepo.Verify(repo => repo.GetAll(), Times.Once);
+        };
     }
 }
+
+
